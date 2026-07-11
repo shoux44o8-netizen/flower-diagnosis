@@ -626,3 +626,207 @@ document
 
 resetQuizState();
 showScreen("coverScreen");
+
+/* =====================================================
+   RESULT IMAGE EXPORT
+===================================================== */
+
+const saveResultButton =
+  document.getElementById("saveResultButton");
+
+const saveResultStatus =
+  document.getElementById("saveResultStatus");
+
+async function waitForResultImage() {
+  const resultImage =
+    document.getElementById("resultImage");
+
+  if (!resultImage) {
+    return;
+  }
+
+  if (resultImage.complete) {
+    return;
+  }
+
+  await new Promise((resolve, reject) => {
+    resultImage.addEventListener("load", resolve, {
+      once: true
+    });
+
+    resultImage.addEventListener("error", reject, {
+      once: true
+    });
+  });
+}
+
+function canvasToBlob(canvas) {
+  return new Promise((resolve, reject) => {
+    canvas.toBlob(
+      (blob) => {
+        if (blob) {
+          resolve(blob);
+        } else {
+          reject(
+            new Error("画像ファイルを作成できませんでした。")
+          );
+        }
+      },
+      "image/png",
+      1
+    );
+  });
+}
+
+function createResultFileName() {
+  const safeGuestName =
+    guestName
+      ? guestName.replace(
+          /[\\/:*?"<>|]/g,
+          ""
+        )
+      : "guest";
+
+  const safeFlowerName =
+    latestResultKey &&
+    flowers[latestResultKey]
+      ? flowers[latestResultKey].english
+      : "flower";
+
+  return (
+    `flower-result-` +
+    `${safeGuestName}-` +
+    `${safeFlowerName}.png`
+  );
+}
+
+async function shareOrDownloadResult(blob) {
+  const fileName =
+    createResultFileName();
+
+  const file = new File(
+    [blob],
+    fileName,
+    {
+      type: "image/png"
+    }
+  );
+
+  const shareData = {
+    files: [file],
+    title: "今日、あなたに咲く一輪",
+    text: "私に咲いた一輪の診断結果です。"
+  };
+
+  if (
+    navigator.share &&
+    navigator.canShare &&
+    navigator.canShare({
+      files: [file]
+    })
+  ) {
+    await navigator.share(shareData);
+    return;
+  }
+
+  const downloadUrl =
+    URL.createObjectURL(blob);
+
+  const link =
+    document.createElement("a");
+
+  link.href = downloadUrl;
+  link.download = fileName;
+
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+
+  window.setTimeout(() => {
+    URL.revokeObjectURL(downloadUrl);
+  }, 1000);
+}
+
+async function saveResultAsImage() {
+  const resultCard =
+    document.querySelector(
+      "#resultScreen .result-card"
+    );
+
+  if (
+    !resultCard ||
+    typeof html2canvas === "undefined"
+  ) {
+    saveResultStatus.textContent =
+      "画像保存機能を読み込めませんでした。";
+    return;
+  }
+
+  saveResultButton.disabled = true;
+  saveResultButton.textContent =
+    "画像を作成しています…";
+
+  saveResultStatus.textContent =
+    "少しだけお待ちください。";
+
+  resultCard.classList.add(
+    "is-exporting"
+  );
+
+  try {
+    await waitForResultImage();
+
+    if (document.fonts?.ready) {
+      await document.fonts.ready;
+    }
+
+    const canvas =
+      await html2canvas(resultCard, {
+        backgroundColor: "#fbf4e5",
+        scale: Math.min(
+          window.devicePixelRatio || 2,
+          3
+        ),
+        useCORS: true,
+        allowTaint: false,
+        logging: false,
+        scrollX: 0,
+        scrollY: -window.scrollY,
+        windowWidth:
+          document.documentElement.scrollWidth
+      });
+
+    const blob =
+      await canvasToBlob(canvas);
+
+    await shareOrDownloadResult(blob);
+
+    saveResultStatus.textContent =
+      "共有画面から「画像を保存」を選んでください。";
+  } catch (error) {
+    if (error?.name === "AbortError") {
+      saveResultStatus.textContent =
+        "保存をキャンセルしました。";
+    } else {
+      console.error(error);
+
+      saveResultStatus.textContent =
+        "画像を保存できませんでした。もう一度お試しください。";
+    }
+  } finally {
+    resultCard.classList.remove(
+      "is-exporting"
+    );
+
+    saveResultButton.disabled = false;
+    saveResultButton.textContent =
+      "結果を画像として保存";
+  }
+}
+
+if (saveResultButton) {
+  saveResultButton.addEventListener(
+    "click",
+    saveResultAsImage
+  );
+}
