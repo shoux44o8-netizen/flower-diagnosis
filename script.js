@@ -1,9 +1,18 @@
 const screens = Array.from(document.querySelectorAll(".screen"));
 
 const flowers = {
+
   sandersonia: {
     name: "サンダーソニア",
+    english: "Sandersonia",
+    scientific: "Sandersonia aurantiaca",
     language: "祝福・祈り",
+    keywords: [
+      "祝福",
+      "希望",
+      "ぬくもり"
+    ],
+    quote: "祝福は、大きな言葉ではなく、小さな優しさの中に咲く。",
     image: "assets/sandersonia.PNG",
     description:
       "人の幸せを自分のことのように喜び、静かに灯りを渡せる人。あなたのあたたかさは、大切な時間をそっと照らしています。"
@@ -11,43 +20,84 @@ const flowers = {
 
   sunflower: {
     name: "ひまわり",
+    english: "Sunflower",
+    scientific: "Helianthus annuus",
     language: "憧れ・光",
+    keywords: [
+      "前向き",
+      "笑顔",
+      "希望"
+    ],
+    quote: "あなたが向くその先には、きっと誰かの笑顔が咲いている。",
     image: "assets/sunflower.PNG",
     description:
-      "前向きな力で、自然と人を惹きつける人。あなたのまっすぐな笑顔は、周りに進む勇気と明るさを届けます。"
+      "まっすぐ太陽へ向かうように、人を明るく照らす存在。あなたの前向きなエネルギーは、自然と周囲を笑顔にし、新しい一歩を踏み出す勇気を与えています。"
   },
 
   mimosa: {
     name: "ミモザ",
+    english: "Mimosa",
+    scientific: "Acacia dealbata",
     language: "感謝・友情",
+    keywords: [
+      "感謝",
+      "友情",
+      "思いやり"
+    ],
+    quote: "ありがとうは、何度咲いても美しい花。",
     image: "assets/mimosa.PNG",
     description:
-      "小さな変化によく気づき、さりげない優しさを届けられる人。あなたの気遣いが、人と人の間にあたたかな空気をつくります。"
+      "小さな優しさを見逃さず、人とのつながりを大切にできる人。あなたの温かな気遣いは、何気ない日常を特別な思い出へと変えてくれます。"
   },
 
   ranunculus: {
     name: "ラナンキュラス",
+    english: "Ranunculus",
+    scientific: "Ranunculus asiaticus",
     language: "晴れやかな魅力",
+    keywords: [
+      "魅力",
+      "感性",
+      "美しさ"
+    ],
+    quote: "美しさは、飾るものではなく、自然にあふれ出るもの。",
     image: "assets/ranunculus.PNG",
     description:
-      "美しいものや心が動く瞬間を見つけるのが得意な人。あなたらしい感性が、いつもの景色を少し特別に変えます。"
+      "繊細な感性と美しいものを見つける力を持つ人。あなたらしい価値観やセンスは、周りの人の心をやさしく惹きつけています。"
   },
 
   marigold: {
     name: "マリーゴールド",
+    english: "Marigold",
+    scientific: "Tagetes erecta",
     language: "変わらぬ愛・温かな心",
+    keywords: [
+      "誠実",
+      "安心",
+      "変わらぬ愛"
+    ],
+    quote: "変わらない想いは、時を越えて花を咲かせる。",
     image: "assets/marigold.PNG",
     description:
-      "一度結んだ縁を大切にし、誠実に関係を育てていく人。あなたの存在は、誰かにとって帰りたくなる安心そのものです。"
+      "一度結んだ縁を大切にし、長い時間をかけて信頼を育てられる人。あなたの誠実さは、大切な人にとって心から安心できる居場所になっています。"
   },
 
   oncidium: {
     name: "オンシジウム",
+    english: "Oncidium",
+    scientific: "Oncidium sphacelatum",
     language: "幸福・一緒に踊って",
+    keywords: [
+      "幸福",
+      "自由",
+      "楽しさ"
+    ],
+    quote: "心が踊る瞬間こそ、人生でいちばん美しい。",
     image: "assets/oncidium.PNG",
     description:
-      "日々の中に楽しさを見つけ、軽やかな空気を広げられる人。あなたの笑顔は、周りの人まで自然に弾ませます。"
+      "軽やかな発想と明るい雰囲気で、人を自然と笑顔にできる人。あなたの存在は、その場の空気を柔らかくし、幸せな時間を広げてくれます。"
   }
+
 };
 
 /*
