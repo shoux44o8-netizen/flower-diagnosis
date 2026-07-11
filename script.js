@@ -118,217 +118,216 @@ const flowers = {
 
 const questions = [
   {
-    text: "初対面の人が多い場所で、あなたに近いのは？",
+    text: "今日、大切な人へ一つだけ贈るなら？",
     answers: [
       {
-        label: "自分から声をかけ、その場を明るくする",
+        label: "前を向けるような勇気",
         points: {
-          sunflower: 3,
-          oncidium: 1
+          hope: 3,
+          blessing: 1
         }
       },
       {
-        label: "近くの人とゆっくり距離を縮める",
+        label: "心がほどけるような優しさ",
         points: {
-          mimosa: 3,
-          marigold: 1
+          love: 3,
+          gratitude: 1
         }
       },
       {
-        label: "まず雰囲気を感じ、自然なタイミングを待つ",
+        label: "思わず笑顔になる時間",
         points: {
-          ranunculus: 2,
-          sandersonia: 2
+          happiness: 3,
+          hope: 1
         }
       }
     ]
   },
 
   {
-    text: "誰かを喜ばせたいとき、何を大切にしますか？",
+    text: "あなたらしい「ありがとう」の伝え方は？",
     answers: [
       {
-        label: "驚きと楽しさのある演出",
+        label: "言葉でまっすぐ伝える",
         points: {
-          oncidium: 3,
-          sunflower: 1
+          gratitude: 3,
+          hope: 1
         }
       },
       {
-        label: "相手の好みを考えた丁寧な贈り物",
+        label: "行動でそっと返す",
         points: {
-          mimosa: 2,
-          ranunculus: 2
+          love: 3,
+          blessing: 1
         }
       },
       {
-        label: "必要なときに、そっと寄り添うこと",
+        label: "相手が喜ぶ形を考える",
         points: {
-          sandersonia: 3,
-          marigold: 1
+          beauty: 2,
+          gratitude: 2
         }
       }
     ]
   },
 
   {
-    text: "心が満たされる休日の過ごし方は？",
+    text: "誰かが落ち込んでいたら、あなたは？",
     answers: [
       {
-        label: "外へ出て、にぎやかな時間を楽しむ",
+        label: "元気が出るように励ます",
         points: {
-          sunflower: 2,
-          oncidium: 2
+          hope: 3,
+          happiness: 1
         }
       },
       {
-        label: "好きなものを見たり、つくったりする",
+        label: "最後まで話を聞く",
         points: {
-          ranunculus: 3,
-          mimosa: 1
+          gratitude: 3,
+          love: 1
         }
       },
       {
-        label: "大切な人と穏やかに過ごす",
+        label: "静かにそばにいる",
         points: {
-          marigold: 2,
-          sandersonia: 2
+          blessing: 3,
+          love: 1
         }
       }
     ]
   },
 
   {
-    text: "周りから言われて、いちばん嬉しい言葉は？",
+    text: "あなたの心が一番動く瞬間は？",
+    answers: [
+      {
+        label: "誰かが心から笑っているとき",
+        points: {
+          happiness: 3,
+          hope: 1
+        }
+      },
+      {
+        label: "美しい景色や空間に出会ったとき",
+        points: {
+          beauty: 3,
+          blessing: 1
+        }
+      },
+      {
+        label: "「ありがとう」と言ってもらえたとき",
+        points: {
+          gratitude: 3,
+          love: 1
+        }
+      }
+    ]
+  },
+
+  {
+    text: "あなたが大切にしたい関係は？",
+    answers: [
+      {
+        label: "一緒に笑い合える関係",
+        points: {
+          happiness: 3,
+          hope: 1
+        }
+      },
+      {
+        label: "何でも安心して話せる関係",
+        points: {
+          love: 3,
+          gratitude: 1
+        }
+      },
+      {
+        label: "互いを尊敬し、高め合える関係",
+        points: {
+          beauty: 3,
+          blessing: 1
+        }
+      }
+    ]
+  },
+
+  {
+    text: "周りから言われて、一番嬉しい言葉は？",
     answers: [
       {
         label: "一緒にいると元気になる",
         points: {
-          sunflower: 2,
-          oncidium: 2
+          hope: 3,
+          happiness: 1
         }
       },
       {
-        label: "センスがいい、見方が素敵",
+        label: "一緒にいると安心する",
         points: {
-          ranunculus: 3,
-          mimosa: 1
+          love: 3,
+          blessing: 1
         }
       },
       {
-        label: "優しくて、信頼できる",
+        label: "あなたらしくて素敵",
         points: {
-          marigold: 2,
-          sandersonia: 2
+          beauty: 3,
+          gratitude: 1
         }
       }
     ]
   },
 
   {
-    text: "困っている人に出会ったとき、どうしますか？",
+    text: "結婚式で、一番心に残るものは？",
     answers: [
       {
-        label: "すぐに声をかけ、行動する",
+        label: "新郎新婦を包む祝福",
         points: {
-          sunflower: 2,
-          oncidium: 1,
-          sandersonia: 1
+          blessing: 3,
+          love: 1
         }
       },
       {
-        label: "相手が本当に必要としていることを考える",
+        label: "会場いっぱいに広がる笑顔",
         points: {
-          mimosa: 3,
-          marigold: 1
-        }
-      },
-      {
-        label: "安心できるよう、静かにそばにいる",
-        points: {
-          sandersonia: 3,
-          ranunculus: 1
-        }
-      }
-    ]
-  },
-
-  {
-    text: "あなたが大切にしたい時間は？",
-    answers: [
-      {
-        label: "みんなで笑い合う時間",
-        points: {
-          oncidium: 3,
-          sunflower: 1
-        }
-      },
-      {
-        label: "美しいものに触れ、心が動く時間",
-        points: {
-          ranunculus: 3,
-          mimosa: 1
-        }
-      },
-      {
-        label: "気持ちが通じ合い、安心できる時間",
-        points: {
-          sandersonia: 2,
-          marigold: 2
-        }
-      }
-    ]
-  },
-
-  {
-    text: "贈り物を選ぶとき、最もあなたらしいのは？",
-    answers: [
-      {
-        label: "思わず笑顔になる意外なもの",
-        points: {
-          oncidium: 3,
-          sunflower: 1
-        }
-      },
-      {
-        label: "見た目や物語まで美しいもの",
-        points: {
-          ranunculus: 3,
-          mimosa: 1
-        }
-      },
-      {
-        label: "相手との思い出や関係が伝わるもの",
-        points: {
-          marigold: 2,
-          sandersonia: 2
-        }
-      }
-    ]
-  },
-
-  {
-    text: "結婚式で、特に心に残るものは？",
-    answers: [
-      {
-        label: "会場全体の盛り上がりと笑顔",
-        points: {
-          sunflower: 2,
-          oncidium: 2
+          happiness: 3,
+          hope: 1
         }
       },
       {
         label: "装花や衣装、空間の美しさ",
         points: {
-          ranunculus: 3,
-          mimosa: 1
+          beauty: 3,
+          gratitude: 1
+        }
+      }
+    ]
+  },
+
+  {
+    text: "今日という日を、一輪の花にするなら？",
+    answers: [
+      {
+        label: "誰かの未来を照らす花",
+        points: {
+          hope: 3,
+          blessing: 1
         }
       },
       {
-        label: "新郎新婦とゲストの間に流れる想い",
+        label: "そっと心へ寄り添う花",
         points: {
-          sandersonia: 3,
-          marigold: 1
+          love: 2,
+          gratitude: 2
+        }
+      },
+      {
+        label: "みんなを笑顔にする花",
+        points: {
+          happiness: 3,
+          beauty: 1
         }
       }
     ]
