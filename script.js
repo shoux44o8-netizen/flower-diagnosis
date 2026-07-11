@@ -499,12 +499,6 @@ function resolveResult() {
   return valueToFlower[selectedValue];
 }
 
- 
-  return highestFlowers[
-    Math.floor(Math.random() * highestFlowers.length)
-  ];
-}
-
 function finishQuiz() {
   latestResultKey = resolveResult();
 
