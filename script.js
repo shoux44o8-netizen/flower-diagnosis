@@ -427,8 +427,8 @@ function renderQuestion() {
 }
 
 function addPoints(points) {
-  Object.entries(points).forEach(([flowerKey, point]) => {
-    scores[flowerKey] += point;
+  Object.entries(points).forEach(([valueKey, point]) => {
+    scores[valueKey] += point;
   });
 }
 
@@ -531,9 +531,6 @@ function finishQuiz() {
   const demoWinner =
     Math.random() < 0.15;
 
-  const resultQuote =
-document.getElementById("resultQuote");
-
   if (
   latestResultKey === "sandersonia" &&
   (forceGolden || demoWinner)
@@ -585,9 +582,12 @@ function displayResult(resultKey) {
     document.getElementById("resultDescription");
 
   const resultGuestName =
-    document.getElementById("resultGuestName");
+  document.getElementById("resultGuestName");
 
-  const resultKeywords =
+const resultQuote =
+  document.getElementById("resultQuote");
+
+const resultKeywords =
   document.getElementById("resultKeywords");
   
   const resultEnglishName =
