@@ -537,6 +537,31 @@ document.getElementById("resultQuote");
 }
 }
 
+function showGoldenCelebration() {
+  const goldenScreen =
+    document.getElementById("goldenScreen");
+
+  if (!goldenScreen) {
+    return;
+  }
+
+  goldenScreen.classList.remove(
+    "screen-active"
+  );
+
+  void goldenScreen.offsetWidth;
+
+  showScreen("goldenScreen");
+
+  if ("vibrate" in navigator) {
+    navigator.vibrate([
+      80,
+      80,
+      140
+    ]);
+  }
+}
+
 function displayResult(resultKey) {
   const flower = flowers[resultKey];
 
