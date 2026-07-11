@@ -181,71 +181,206 @@
     </section>
 
 
-    <!-- 診断結果 -->
-    <section
-      id="resultScreen"
-      class="screen paper-screen"
-    >
+<!-- 診断結果 -->
+<section
+  id="resultScreen"
+  class="screen paper-screen"
+  aria-labelledby="resultFlowerName"
+>
 
-      <div class="paper-card result-card">
+  <div class="paper-card result-card">
 
-        <p class="result-heading">
-          今日、あなたに咲いた一輪
-        </p>
+    <!-- 図鑑ページ上部 -->
+    <div class="result-page-header">
 
-        <div class="flower-frame">
+      <p class="result-volume">
+        BOTANICAL PORTRAIT
+      </p>
 
-          <img
-            id="resultImage"
-            class="result-image"
-            src=""
-            alt=""
-          >
+      <p class="result-heading">
+        今日、あなたに咲いた一輪
+      </p>
 
-        </div>
+    </div>
 
-        <h2 id="resultFlowerName">
-          花の名前
-        </h2>
 
-        <p class="flower-language-heading">
-          花言葉
-        </p>
+    <!-- 花の標本画像 -->
+    <div class="flower-plate">
 
-        <p
-          id="resultFlowerLanguage"
-          class="flower-language"
-        >
-          「花言葉」
-        </p>
+      <span
+        class="plate-corner plate-corner-top-left"
+        aria-hidden="true"
+      ></span>
 
-        <div class="small-line"></div>
+      <span
+        class="plate-corner plate-corner-top-right"
+        aria-hidden="true"
+      ></span>
 
-        <p
-          id="resultDescription"
-          class="result-description"
-        ></p>
+      <span
+        class="plate-corner plate-corner-bottom-left"
+        aria-hidden="true"
+      ></span>
 
-        <p
-          id="resultGuestName"
-          class="guest-name"
-        ></p>
+      <span
+        class="plate-corner plate-corner-bottom-right"
+        aria-hidden="true"
+      ></span>
 
-        <p class="wedding-date result-date">
-          2026.09.19
-        </p>
+      <div class="flower-glow" aria-hidden="true"></div>
 
-        <button
-          id="returnTopButton"
-          class="main-button wide-button"
-          type="button"
-        >
-          表紙へ戻る
-        </button>
+      <img
+        id="resultImage"
+        class="result-image"
+        src=""
+        alt=""
+      >
+
+      <p class="specimen-number">
+        PLATE No. 01
+      </p>
+
+    </div>
+
+
+    <!-- 花名 -->
+    <div class="flower-title-area">
+
+      <p
+        id="resultEnglishName"
+        class="flower-english-name"
+      >
+        FLOWER NAME
+      </p>
+
+      <h2 id="resultFlowerName">
+        花の名前
+      </h2>
+
+      <p
+        id="resultScientificName"
+        class="flower-scientific-name"
+      >
+        Scientific name
+      </p>
+
+    </div>
+
+
+    <!-- 花言葉 -->
+    <div class="flower-language-area">
+
+      <p class="flower-language-heading">
+        花言葉
+      </p>
+
+      <p
+        id="resultFlowerLanguage"
+        class="flower-language"
+      >
+        「花言葉」
+      </p>
+
+    </div>
+
+
+    <div class="ornament-divider" aria-hidden="true">
+
+      <span></span>
+
+      <span class="ornament-symbol">
+        ✦
+      </span>
+
+      <span></span>
+
+    </div>
+
+
+    <!-- 診断メッセージ -->
+    <div class="result-letter">
+
+      <p class="letter-heading">
+        A LETTER FOR YOU
+      </p>
+
+      <p
+        id="resultDescription"
+        class="result-description"
+      ></p>
+
+    </div>
+
+
+    <!-- 性格キーワード -->
+    <div class="result-keywords-area">
+
+      <p class="keywords-heading">
+        この花が表すもの
+      </p>
+
+      <div
+        id="resultKeywords"
+        class="result-keywords"
+      >
+
+        <span class="keyword-chip">
+          優しさ
+        </span>
+
+        <span class="keyword-chip">
+          感謝
+        </span>
+
+        <span class="keyword-chip">
+          つながり
+        </span>
 
       </div>
 
-    </section>
+    </div>
+
+
+    <!-- 名前と日付 -->
+    <div class="result-footer">
+
+      <p
+        id="resultGuestName"
+        class="guest-name"
+      ></p>
+
+      <p class="result-memory-message">
+        今日という日が、<br>
+        あなたにとってあたたかな思い出になりますように。
+      </p>
+
+      <p class="wedding-date result-date">
+        2026.09.19
+      </p>
+
+    </div>
+
+
+    <!-- 操作ボタン -->
+    <div class="result-actions">
+
+      <button
+        id="returnTopButton"
+        class="main-button wide-button"
+        type="button"
+      >
+        表紙へ戻る
+      </button>
+
+      <p class="screenshot-guide">
+        このページはスクリーンショットで保存できます
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
 
 
     <!-- 黄金のサンダーソニア -->
