@@ -555,6 +555,9 @@ function displayResult(resultKey) {
   const resultGuestName =
     document.getElementById("resultGuestName");
 
+  const resultKeywords =
+  document.getElementById("resultKeywords");
+  
   const resultEnglishName =
   document.getElementById("resultEnglishName");
 
@@ -581,6 +584,17 @@ resultFlowerLanguage.textContent =
 
   resultQuote.textContent =
 flower.quote;
+
+  resultKeywords.innerHTML = "";
+
+flower.keywords.forEach((keyword) => {
+  const span = document.createElement("span");
+
+  span.className = "keyword-chip";
+  span.textContent = keyword;
+
+  resultKeywords.appendChild(span);
+});
 
   resultGuestName.textContent =
     `${guestName}さんへ`;
