@@ -499,32 +499,7 @@ function resolveResult() {
   return valueToFlower[selectedValue];
 }
 
-  /*
-    同点時の処理です。
-
-    サンダーソニアが同点に含まれる場合は、
-    少しだけ選ばれやすくしています。
-  */
-
-  if (
-    highestFlowers.includes("sandersonia") &&
-    highestFlowers.length > 1
-  ) {
-    const chooseSandersonia = Math.random() < 0.55;
-
-    if (chooseSandersonia) {
-      return "sandersonia";
-    }
-
-    const otherFlowers = highestFlowers.filter(
-      (flowerKey) => flowerKey !== "sandersonia"
-    );
-
-    return otherFlowers[
-      Math.floor(Math.random() * otherFlowers.length)
-    ];
-  }
-
+ 
   return highestFlowers[
     Math.floor(Math.random() * highestFlowers.length)
   ];
