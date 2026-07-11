@@ -1157,3 +1157,10 @@ h2 {
 .result-card {
   background: #fbf4e5;
 }
+
+/* 保存時は花画像をくっきり表示 */
+.result-card.is-exporting .result-image {
+  mix-blend-mode: normal !important;
+  opacity: 1 !important;
+  filter: none !important;
+}
