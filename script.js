@@ -452,19 +452,52 @@ function animateNextQuestion() {
 }
 
 function resolveResult() {
-  const scoreEntries = Object.entries(scores);
+  const valueToFlower = {
+    blessing: "sandersonia",
+    hope: "sunflower",
+    gratitude: "mimosa",
+    beauty: "ranunculus",
+    love: "marigold",
+    happiness: "oncidium"
+  };
 
-  const highestScore = Math.max(
-    ...scoreEntries.map(([, score]) => score)
-  );
+  const scoreEntries =
+    Object.entries(scores);
 
-  const highestFlowers = scoreEntries
-    .filter(([, score]) => score === highestScore)
-    .map(([flowerKey]) => flowerKey);
+  const highestScore =
+    Math.max(
+      ...scoreEntries.map(
+        ([, score]) => score
+      )
+    );
 
-  if (highestFlowers.length === 1) {
-    return highestFlowers[0];
+  const highestValues =
+    scoreEntries
+      .filter(
+        ([, score]) =>
+          score === highestScore
+      )
+      .map(
+        ([valueKey]) => valueKey
+      );
+
+  let selectedValue;
+
+  if (highestValues.length === 1) {
+    selectedValue =
+      highestValues[0];
+  } else {
+    selectedValue =
+      highestValues[
+        Math.floor(
+          Math.random() *
+          highestValues.length
+        )
+      ];
   }
+
+  return valueToFlower[selectedValue];
+}
 
   /*
     同点時の処理です。
