@@ -1127,3 +1127,33 @@ h2 {
 .cover-content {
   transform: translateY(-120px);
 }
+
+/* =====================================================
+   RESULT IMAGE SAVE
+===================================================== */
+
+.save-result-button {
+  margin-bottom: 18px;
+}
+
+.save-result-status {
+  min-height: 1.5em;
+  margin-top: 14px;
+  color: #8f7957;
+  font-size: 12px;
+  line-height: 1.7;
+  letter-spacing: 0.06em;
+}
+
+.result-card.is-exporting .result-actions {
+  display: none;
+}
+
+.result-card.is-exporting {
+  box-shadow: none;
+}
+
+/* 保存画像で端が切れにくいようにする */
+.result-card {
+  background: #fbf4e5;
+}
