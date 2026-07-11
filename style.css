@@ -494,12 +494,11 @@ h2 {
   height: 100%;
   display: block;
 
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
 
   mix-blend-mode: normal;
   opacity: 1;
-  filter: none;
 }
 
 @keyframes bloom-in {
@@ -1189,12 +1188,11 @@ h2 {
   height: 100%;
   display: block;
 
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
 
   mix-blend-mode: normal;
   opacity: 1;
-  filter: none;
 }
 
 /* 結果画面を開いた瞬間に花言葉まで見せる */
