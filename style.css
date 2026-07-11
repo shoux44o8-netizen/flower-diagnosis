@@ -472,33 +472,15 @@ h2 {
   letter-spacing: 0.13em;
 }
 
-.flower-frame {
-  width: min(310px, 78vw);
-  aspect-ratio: 3 / 4;
-  margin: 0 auto 28px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  overflow: hidden;
-  padding: 0;
-
-  background: transparent;
-  border: none;
-  box-shadow: none;
+.flower-frame{
+    width:min(310px,78vw);
+    margin:0 auto 22px;
 }
 
-.result-image {
-  width: 100%;
-  height: 100%;
-  display: block;
-
-  object-fit: cover;
-  object-position: center;
-
-  mix-blend-mode: normal;
-  opacity: 1;
+.result-image{
+  width:100%;
+  height:auto;
+  display:block;
 }
 
 @keyframes bloom-in {
@@ -1166,33 +1148,15 @@ h2 {
   filter: none !important;
 }
 
-.flower-frame {
-  width: min(330px, 82vw);
-  aspect-ratio: 3 / 4;
-  margin: 0 auto 28px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  overflow: hidden;
-  padding: 0;
-
-  background: transparent;
-  border: none;
-  box-shadow: none;
+.flower-frame{
+    width:min(310px,78vw);
+    margin:0 auto 22px;
 }
 
-.result-image {
-  width: 100%;
-  height: 100%;
-  display: block;
-
-  object-fit: cover;
-  object-position: center;
-
-  mix-blend-mode: normal;
-  opacity: 1;
+.result-image{
+  width:100%;
+  height:auto;
+  display:block;
 }
 
 /* 結果画面を開いた瞬間に花言葉まで見せる */
