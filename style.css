@@ -576,15 +576,10 @@ h2 {
   color: #ffe7a6;
 }
 
-.golden-image {
-  display: block;
-  width: min(330px, 82vw);
-  max-height: 390px;
-  margin: 6px auto 18px;
-  object-fit: contain;
-  border: 1px solid rgba(255, 232, 166, 0.35);
-  box-shadow:
-    0 0 38px rgba(255, 212, 86, 0.28);
+.golden-image{
+  display:block;
+  width:100%;
+  height:auto;
 }
 
 .golden-card h2 {
