@@ -22,7 +22,7 @@ const flowers = {
     name: "ひまわり",
     english: "Sunflower",
     scientific: "Helianthus annuus",
-    language: "憧れ・光",
+    language: "憧れ・希望",
     keywords: [
       "前向き",
       "笑顔",
@@ -38,7 +38,7 @@ const flowers = {
     name: "ミモザ",
     english: "Mimosa",
     scientific: "Acacia dealbata",
-    language: "感謝・友情",
+    language: "感謝・思いやり",
     keywords: [
       "感謝",
       "友情",
@@ -70,7 +70,7 @@ const flowers = {
     name: "マリーゴールド",
     english: "Marigold",
     scientific: "Tagetes erecta",
-    language: "変わらぬ愛・温かな心",
+    language: "変わらぬ愛・真心",
     keywords: [
       "誠実",
       "安心",
