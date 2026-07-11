@@ -1122,3 +1122,8 @@ h2 {
     letter-spacing:.04em;
 
 }
+
+/* 表紙の文字全体を上へ移動 */
+.cover-content {
+  transform: translateY(-120px);
+}
