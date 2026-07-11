@@ -342,12 +342,12 @@ let latestResultKey = null;
 
 function createEmptyScores() {
   return {
-    sandersonia: 0,
-    sunflower: 0,
-    mimosa: 0,
-    ranunculus: 0,
-    marigold: 0,
-    oncidium: 0
+    blessing: 0,
+    hope: 0,
+    gratitude: 0,
+    beauty: 0,
+    love: 0,
+    happiness: 0
   };
 }
 
