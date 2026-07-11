@@ -473,27 +473,33 @@ h2 {
 }
 
 .flower-frame {
-    width: min(400px, 92vw);
-    aspect-ratio: 9 / 16;
-    margin: 0 auto 28px;
+  width: min(310px, 78vw);
+  aspect-ratio: 3 / 4;
+  margin: 0 auto 28px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    overflow: visible;
+  overflow: hidden;
+  padding: 0;
 
-    background: transparent;
-    border: none;
-    box-shadow: none;
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }
 
 .result-image {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center;
-    display: block;
+  width: 100%;
+  height: 100%;
+  display: block;
+
+  object-fit: contain;
+  object-position: center;
+
+  mix-blend-mode: normal;
+  opacity: 1;
+  filter: none;
 }
 
 @keyframes bloom-in {
