@@ -524,6 +524,9 @@ function finishQuiz() {
   const demoWinner =
     Math.random() < 0.15;
 
+  const resultQuote =
+document.getElementById("resultQuote");
+
   if (
     latestResultKey === "sandersonia" &&
     (forceGolden || demoWinner)
@@ -563,6 +566,9 @@ function displayResult(resultKey) {
 
   resultDescription.textContent =
     flower.description;
+
+  resultQuote.textContent =
+flower.quote;
 
   resultGuestName.textContent =
     `${guestName}さんへ`;
