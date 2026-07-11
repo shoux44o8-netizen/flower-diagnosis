@@ -528,13 +528,13 @@ function finishQuiz() {
 document.getElementById("resultQuote");
 
   if (
-    latestResultKey === "sandersonia" &&
-    (forceGolden || demoWinner)
-  ) {
-    window.setTimeout(() => {
-      showScreen("goldenScreen");
-    }, 2300);
-  }
+  latestResultKey === "sandersonia" &&
+  (forceGolden || demoWinner)
+) {
+  window.setTimeout(() => {
+    showGoldenCelebration();
+  }, 2300);
+}
 }
 
 function displayResult(resultKey) {
