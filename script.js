@@ -4,7 +4,7 @@ const flowers = {
   sandersonia: {
     name: "サンダーソニア",
     language: "祝福・祈り",
-    image: "assets/sandersonia.png",
+    image: "assets/sandersonia.PNG",
     description:
       "人の幸せを自分のことのように喜び、静かに灯りを渡せる人。あなたのあたたかさは、大切な時間をそっと照らしています。"
   },
@@ -12,7 +12,7 @@ const flowers = {
   sunflower: {
     name: "ひまわり",
     language: "憧れ・光",
-    image: "assets/sunflower.jpg",
+    image: "assets/sunflower.PNG",
     description:
       "前向きな力で、自然と人を惹きつける人。あなたのまっすぐな笑顔は、周りに進む勇気と明るさを届けます。"
   },
@@ -20,7 +20,7 @@ const flowers = {
   mimosa: {
     name: "ミモザ",
     language: "感謝・友情",
-    image: "assets/mimosa.jpg",
+    image: "assets/mimosa.PNG",
     description:
       "小さな変化によく気づき、さりげない優しさを届けられる人。あなたの気遣いが、人と人の間にあたたかな空気をつくります。"
   },
@@ -28,7 +28,7 @@ const flowers = {
   ranunculus: {
     name: "ラナンキュラス",
     language: "晴れやかな魅力",
-    image: "assets/ranunculus.jpg",
+    image: "assets/ranunculus.PNG",
     description:
       "美しいものや心が動く瞬間を見つけるのが得意な人。あなたらしい感性が、いつもの景色を少し特別に変えます。"
   },
@@ -36,7 +36,7 @@ const flowers = {
   marigold: {
     name: "マリーゴールド",
     language: "変わらぬ愛・温かな心",
-    image: "assets/marigold.jpg",
+    image: "assets/marigold.PNG",
     description:
       "一度結んだ縁を大切にし、誠実に関係を育てていく人。あなたの存在は、誰かにとって帰りたくなる安心そのものです。"
   },
@@ -44,7 +44,7 @@ const flowers = {
   oncidium: {
     name: "オンシジウム",
     language: "幸福・一緒に踊って",
-    image: "assets/oncidium.jpg",
+    image: "assets/oncidium.PNG",
     description:
       "日々の中に楽しさを見つけ、軽やかな空気を広げられる人。あなたの笑顔は、周りの人まで自然に弾ませます。"
   }
