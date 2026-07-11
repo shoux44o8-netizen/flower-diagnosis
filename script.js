@@ -555,14 +555,26 @@ function displayResult(resultKey) {
   const resultGuestName =
     document.getElementById("resultGuestName");
 
+  const resultEnglishName =
+  document.getElementById("resultEnglishName");
+
+const resultScientificName =
+  document.getElementById("resultScientificName");
+
   resultImage.src = flower.image;
   resultImage.alt = flower.name;
 
-  resultFlowerName.textContent =
-    flower.name;
+ resultFlowerName.textContent =
+  flower.name;
 
-  resultFlowerLanguage.textContent =
-    `「${flower.language}」`;
+resultEnglishName.textContent =
+  flower.english.toUpperCase();
+
+resultScientificName.textContent =
+  flower.scientific;
+
+resultFlowerLanguage.textContent =
+  `「${flower.language}」`;
 
   resultDescription.textContent =
     flower.description;
