@@ -338,6 +338,85 @@ let currentQuestionIndex = 0;
 let guestName = "";
 let scores = {};
 let latestResultKey = null;
+const DEVICE_ID_STORAGE_KEY =
+  "flowerDiagnosisDeviceId";
+
+const PARTICIPANT_ID_STORAGE_KEY =
+  "flowerDiagnosisParticipantId";
+
+function getOrCreateDeviceId() {
+  const savedDeviceId =
+    localStorage.getItem(
+      DEVICE_ID_STORAGE_KEY
+    );
+
+  if (savedDeviceId) {
+    return savedDeviceId;
+  }
+
+  const newDeviceId =
+    crypto.randomUUID();
+
+  localStorage.setItem(
+    DEVICE_ID_STORAGE_KEY,
+    newDeviceId
+  );
+
+  return newDeviceId;
+}
+
+async function submitDiagnosisResult(
+  flowerResult
+) {
+  const deviceId =
+    getOrCreateDeviceId();
+
+  const response = await fetch(
+    "/api/submit",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type":
+          "application/json"
+      },
+      body: JSON.stringify({
+        guestName,
+        deviceId,
+        flowerResult
+      })
+    }
+  );
+
+  let result;
+
+  try {
+    result = await response.json();
+  } catch {
+    throw new Error(
+      "サーバーから正しい応答を受け取れませんでした。"
+    );
+  }
+
+  if (!response.ok || !result.ok) {
+    const error =
+      new Error(
+        result.message ||
+        "診断結果を保存できませんでした。"
+      );
+
+    error.code =
+      result.code || "SAVE_FAILED";
+
+    throw error;
+  }
+
+  localStorage.setItem(
+    PARTICIPANT_ID_STORAGE_KEY,
+    result.participantId
+  );
+
+  return result;
+}
 
 function createEmptyScores() {
   return {
@@ -500,39 +579,77 @@ function resolveResult() {
 }
 
 function finishQuiz() {
-  latestResultKey = resolveResult();
+  async function finishQuiz() {
+  latestResultKey =
+    resolveResult();
 
-  displayResult(latestResultKey);
-  showScreen("resultScreen");
-
-  /*
-    現在はデモ抽選です。
-
-    サンダーソニアになった人だけ、
-    15％の確率で黄金演出が出ます。
-
-    本番ではSupabaseに接続し、
-    全参加者のうち3名だけに固定します。
-  */
-
-  const searchParameters = new URLSearchParams(
-    window.location.search
+  displayResult(
+    latestResultKey
   );
 
-  const forceGolden =
-    searchParameters.get("golden") === "1";
+  showScreen(
+    "resultScreen"
+  );
 
-  const demoWinner =
-    Math.random() < 0.15;
+  /*
+    結果画面は先に表示します。
+
+    通信に少し時間がかかった場合でも、
+    ゲストを待たせないためです。
+  */
+
+  try {
+    const submission =
+      await submitDiagnosisResult(
+        latestResultKey
+      );
+
+    console.log(
+      "診断結果を保存しました。",
+      submission.participantId
+    );
+  } catch (error) {
+    if (
+      error.code ===
+      "ALREADY_ENTERED"
+    ) {
+      console.info(
+        "この端末では登録済みです。"
+      );
+    } else {
+      console.error(
+        "診断結果の保存に失敗しました。",
+        error
+      );
+    }
+  }
+
+  /*
+    黄金画面の動作確認用です。
+
+    本番の抽選機能を完成させた段階で、
+    このテスト判定は管理用に整理します。
+  */
+
+  const searchParameters =
+    new URLSearchParams(
+      window.location.search
+    );
+
+  const forceGolden =
+    searchParameters.get(
+      "golden"
+    ) === "1";
 
   if (
-  latestResultKey === "sandersonia" &&
-  (forceGolden || demoWinner)
-) {
-  window.setTimeout(() => {
-    showGoldenCelebration();
-  }, 2300);
-}
+    latestResultKey ===
+      "sandersonia" &&
+    forceGolden
+  ) {
+    window.setTimeout(() => {
+      showGoldenCelebration();
+    }, 2300);
+  }
 }
 
 function showGoldenCelebration() {
