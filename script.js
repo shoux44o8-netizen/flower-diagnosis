@@ -338,6 +338,7 @@ let currentQuestionIndex = 0;
 let guestName = "";
 let scores = {};
 let latestResultKey = null;
+
 const DEVICE_ID_STORAGE_KEY =
   "flowerDiagnosisDeviceId";
 
@@ -578,8 +579,7 @@ function resolveResult() {
   return valueToFlower[selectedValue];
 }
 
-function finishQuiz() {
-  async function finishQuiz() {
+async function finishQuiz() {
   latestResultKey =
     resolveResult();
 
