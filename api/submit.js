@@ -143,25 +143,38 @@ export async function POST(request) {
       "id"
     );
 
-    eventUrl.searchParams.set(
-      "is_open",
-      "eq.true"
-    );
+    const currentTime =
+  new Date().toISOString();
 
-    eventUrl.searchParams.set(
-      "draw_finished",
-      "eq.false"
-    );
+eventUrl.searchParams.set(
+  "is_open",
+  "eq.true"
+);
 
-    eventUrl.searchParams.set(
-      "order",
-      "created_at.desc"
-    );
+eventUrl.searchParams.set(
+  "draw_finished",
+  "eq.false"
+);
 
-    eventUrl.searchParams.set(
-      "limit",
-      "1"
-    );
+eventUrl.searchParams.set(
+  "starts_at",
+  `lte.${currentTime}`
+);
+
+eventUrl.searchParams.set(
+  "ends_at",
+  `gt.${currentTime}`
+);
+
+eventUrl.searchParams.set(
+  "order",
+  "starts_at.desc"
+);
+
+eventUrl.searchParams.set(
+  "limit",
+  "1"
+);
 
     const eventResponse =
       await fetch(eventUrl, {
