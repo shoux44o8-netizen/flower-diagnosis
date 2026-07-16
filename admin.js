@@ -1104,6 +1104,22 @@ document.addEventListener(
 ===================================================== */
 
 function initializeAdminPage() {
+   if (isTestMode) {
+
+  document.title =
+    "Wedding Lottery Rehearsal";
+
+  if (modeLabel) {
+    modeLabel.textContent =
+      "REHEARSAL MODE";
+  }
+
+  if (subtitle) {
+    subtitle.innerHTML =
+      "🟠 リハーサルモード<br>本番データには影響しません";
+  }
+
+}
   setDrawButtonDisabled(
     "状況確認後に操作できます",
     "管理PINを入力してください"
