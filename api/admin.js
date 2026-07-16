@@ -254,18 +254,16 @@ export async function GET() {
       ok: true,
       ...status
     });
-  } catch (error) {
-    console.error(
-      "Admin status error:",
-      error
-    );
+  } 
+ catch (error) {
+  console.error("Admin status error:", error);
 
-    return createJsonResponse(
-      {
-        ok: false,
-        message:
-          "管理情報を取得できませんでした。"
-      },
+  return res.status(500).json({
+    ok: false,
+    message: error.message,
+    error
+  });
+}
       500
     );
   }
