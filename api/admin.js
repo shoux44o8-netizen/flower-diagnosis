@@ -45,8 +45,6 @@ function createSupabaseHeaders(
 ) {
   return {
     apikey: supabaseSecretKey,
-    Authorization:
-      `Bearer ${supabaseSecretKey}`,
     "Content-Type": "application/json"
   };
 }
