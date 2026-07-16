@@ -112,6 +112,16 @@ const celebrationOverlay =
     "celebrationOverlay"
   );
 
+const modeLabel =
+  document.getElementById(
+    "modeLabel"
+  );
+
+const subtitle =
+  document.querySelector(
+    ".admin-subtitle"
+  );
+
 
 /* =====================================================
    STATE
