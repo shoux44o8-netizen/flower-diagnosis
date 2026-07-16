@@ -245,17 +245,24 @@ async function executeDraw() {
   return await rpcResponse.json();
 }
 
-export async function GET() {
-  try {
-    const status =
-      await getWeddingStatus();
+  } catch (error) {
+    console.error(
+      "Admin status error:",
+      error
+    );
 
-    return createJsonResponse({
-      ok: true,
-      ...status
-    });
-  } 
- catch (error) {
+    return createJsonResponse(
+      {
+        ok: false,
+        message:
+          error instanceof Error
+            ? error.message
+            : "管理情報を取得できませんでした。"
+      },
+      500
+    );
+  }
+}
   console.error("Admin status error:", error);
 
   return res.status(500).json({
