@@ -253,31 +253,15 @@ async function executeDraw() {
 }
 
 export async function GET() {
-  try {
-    const status =
-      await getWeddingStatus();
-
-    return createJsonResponse({
+  return createJsonResponse(
+    {
       ok: true,
-      ...status
-    });
-  } catch (error) {
-    console.error(
-      "Admin status error:",
-      error
-    );
-
-    return createJsonResponse(
-      {
-        ok: false,
-        message:
-          error instanceof Error
-            ? error.message
-            : "管理情報を取得できませんでした。"
-      },
-      500
-    );
-  }
+      endpoint: "admin",
+      message:
+        "Wedding lottery admin API is running."
+    },
+    200
+  );
 }
 
 export async function POST(request) {
@@ -288,6 +272,11 @@ export async function POST(request) {
     const pin =
       typeof body.pin === "string"
         ? body.pin.trim()
+        : "";
+
+    const action =
+      typeof body.action === "string"
+        ? body.action.trim()
         : "";
 
     if (!verifyAdminPin(pin)) {
@@ -302,22 +291,44 @@ export async function POST(request) {
       );
     }
 
-    const winners =
-      await executeDraw();
+    if (action === "status") {
+      const status =
+        await getWeddingStatus();
 
-    const status =
-      await getWeddingStatus();
+      return createJsonResponse({
+        ok: true,
+        ...status
+      });
+    }
 
-    return createJsonResponse({
-      ok: true,
-      message:
-        "受付を締め切り、抽選を完了しました。",
-      winners,
-      ...status
-    });
+    if (action === "draw") {
+      const winners =
+        await executeDraw();
+
+      const status =
+        await getWeddingStatus();
+
+      return createJsonResponse({
+        ok: true,
+        message:
+          "受付を締め切り、抽選を完了しました。",
+        winners,
+        ...status
+      });
+    }
+
+    return createJsonResponse(
+      {
+        ok: false,
+        code: "INVALID_ACTION",
+        message:
+          "管理操作の種類が正しくありません。"
+      },
+      400
+    );
   } catch (error) {
     console.error(
-      "Admin draw error:",
+      "Admin API error:",
       error
     );
 
@@ -327,7 +338,7 @@ export async function POST(request) {
         message:
           error instanceof Error
             ? error.message
-            : "抽選を実行できませんでした。"
+            : "管理操作を実行できませんでした。"
       },
       500
     );
