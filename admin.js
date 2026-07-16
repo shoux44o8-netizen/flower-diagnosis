@@ -4,7 +4,16 @@
    SETTINGS
 ===================================================== */
 
-const ADMIN_API_URL = "/api/admin";
+const searchParams =
+  new URLSearchParams(window.location.search);
+
+const isTestMode =
+  searchParams.get("mode") === "test";
+
+const ADMIN_API_URL =
+  isTestMode
+    ? "/api/admin-test"
+    : "/api/admin";
 
 const ADMIN_PIN_SESSION_KEY =
   "weddingLotteryAdminPin";
