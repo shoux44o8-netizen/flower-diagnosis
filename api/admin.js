@@ -30,7 +30,7 @@ function getSupabaseSettings() {
     !supabaseSecretKey
   ) {
     throw new Error(
-      "Supabaseの管理用設定がありません。"
+      "Supabaseの管理用環境変数が設定されていません。"
     );
   }
 
@@ -113,12 +113,16 @@ async function getWeddingStatus() {
 
   const eventResponse =
     await fetch(eventUrl, {
+      method: "GET",
       headers
     });
 
   if (!eventResponse.ok) {
+    const details =
+      await eventResponse.text();
+
     throw new Error(
-      await eventResponse.text()
+      `イベント取得エラー: ${details}`
     );
   }
 
@@ -162,13 +166,17 @@ async function getWeddingStatus() {
     await fetch(
       participantsUrl,
       {
+        method: "GET",
         headers
       }
     );
 
   if (!participantsResponse.ok) {
+    const details =
+      await participantsResponse.text();
+
     throw new Error(
-      await participantsResponse.text()
+      `参加者取得エラー: ${details}`
     );
   }
 
@@ -191,8 +199,8 @@ async function getWeddingStatus() {
       )
       .sort(
         (a, b) =>
-          a.winner_number -
-          b.winner_number
+          Number(a.winner_number) -
+          Number(b.winner_number)
       );
 
   return {
@@ -210,11 +218,15 @@ async function executeDraw() {
     supabaseSecretKey
   } = getSupabaseSettings();
 
+  const rpcUrl =
+    new URL(
+      "/rest/v1/rpc/draw_golden_winners",
+      supabaseUrl
+    );
+
   const rpcResponse =
     await fetch(
-      `${supabaseUrl}` +
-      `/rest/v1/rpc/` +
-      `draw_golden_winners`,
+      rpcUrl,
       {
         method: "POST",
         headers:
@@ -232,19 +244,23 @@ async function executeDraw() {
     const details =
       await rpcResponse.text();
 
-    console.error(
-      "Draw RPC failed:",
-      details
-    );
-
     throw new Error(
-      "抽選処理を実行できませんでした。"
+      `抽選実行エラー: ${details}`
     );
   }
 
   return await rpcResponse.json();
 }
 
+export async function GET() {
+  try {
+    const status =
+      await getWeddingStatus();
+
+    return createJsonResponse({
+      ok: true,
+      ...status
+    });
   } catch (error) {
     console.error(
       "Admin status error:",
@@ -259,18 +275,6 @@ async function executeDraw() {
             ? error.message
             : "管理情報を取得できませんでした。"
       },
-      500
-    );
-  }
-}
-  console.error("Admin status error:", error);
-
-  return res.status(500).json({
-    ok: false,
-    message: error.message,
-    error
-  });
-}
       500
     );
   }
@@ -321,7 +325,9 @@ export async function POST(request) {
       {
         ok: false,
         message:
-          "抽選を実行できませんでした。"
+          error instanceof Error
+            ? error.message
+            : "抽選を実行できませんでした。"
       },
       500
     );
