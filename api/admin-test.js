@@ -347,52 +347,99 @@ async function resetRehearsalParticipants(
     supabaseSecretKey
   } = getSupabaseSettings();
 
-  const participantsUrl =
+  const headers =
+    createSupabaseHeaders(
+      supabaseSecretKey,
+      {
+        Prefer: "return=minimal"
+      }
+    );
+
+  /*
+    最初に全参加者を
+    「抽選対象外」へ戻します。
+  */
+
+  const allParticipantsUrl =
     new URL(
       "/rest/v1/participants",
       supabaseUrl
     );
 
-  participantsUrl.searchParams.set(
+  allParticipantsUrl.searchParams.set(
     "event_id",
     `eq.${eventId}`
   );
 
-  const response =
+  const resetAllResponse =
     await fetch(
-      participantsUrl,
+      allParticipantsUrl,
       {
         method: "PATCH",
-
-        headers:
-          createSupabaseHeaders(
-            supabaseSecretKey,
-            {
-              Prefer:
-                "return=minimal"
-            }
-          ),
-
+        headers,
         body: JSON.stringify({
           lottery_status:
-            "pending",
-
+            "not_selected",
           winner_number:
             null
         })
       }
     );
 
-  if (!response.ok) {
+  if (!resetAllResponse.ok) {
     const details =
-      await response.text();
+      await resetAllResponse.text();
 
     throw new Error(
       `リハーサル参加者初期化エラー: ${details}`
     );
   }
-}
 
+  /*
+    次にサンダーソニアの参加者だけを
+    抽選待ちへ戻します。
+  */
+
+  const sandersoniaUrl =
+    new URL(
+      "/rest/v1/participants",
+      supabaseUrl
+    );
+
+  sandersoniaUrl.searchParams.set(
+    "event_id",
+    `eq.${eventId}`
+  );
+
+  sandersoniaUrl.searchParams.set(
+    "flower_result",
+    "eq.sandersonia"
+  );
+
+  const resetSandersoniaResponse =
+    await fetch(
+      sandersoniaUrl,
+      {
+        method: "PATCH",
+        headers,
+        body: JSON.stringify({
+          lottery_status:
+            "pending",
+          winner_number:
+            null
+        })
+      }
+    );
+
+  if (!resetSandersoniaResponse.ok) {
+    const details =
+      await resetSandersoniaResponse.text();
+
+    throw new Error(
+      `サンダーソニア初期化エラー: ${details}`
+    );
+  }
+}
 
 /* =====================================================
    RESET EVENT
