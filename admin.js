@@ -104,6 +104,11 @@ const emptyWinnerMessage =
 const winnersContainer =
   document.getElementById("winners");
 
+const resetRehearsalButton =
+  document.getElementById(
+    "resetRehearsalButton"
+  );
+
 const logoutButton =
   document.getElementById("logoutButton");
 
