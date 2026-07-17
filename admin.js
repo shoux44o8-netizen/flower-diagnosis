@@ -1192,6 +1192,12 @@ function initializeAdminPage() {
       "🟠 リハーサルモード<br>本番データには影響しません";
   }
 
+  if (resetRehearsalButton) {
+    resetRehearsalButton.classList.remove(
+      "hidden"
+    );
+  }
+
 }
   setDrawButtonDisabled(
     "状況確認後に操作できます",
