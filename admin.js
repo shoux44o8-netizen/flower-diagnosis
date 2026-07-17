@@ -218,7 +218,10 @@ function safelyGetErrorMessage(
    ADMIN API
 ===================================================== */
 
-async function callAdminApi(action) {
+async function callAdminApi(
+  action,
+  extraBody = {}
+) {
   const response =
     await fetch(
       ADMIN_API_URL,
@@ -234,7 +237,8 @@ async function callAdminApi(action) {
 
         body: JSON.stringify({
           pin: currentPin,
-          action
+          action,
+          ...extraBody
         })
       }
     );
@@ -269,7 +273,6 @@ async function callAdminApi(action) {
 
   return result;
 }
-
 
 /* =====================================================
    EVENT STATUS
