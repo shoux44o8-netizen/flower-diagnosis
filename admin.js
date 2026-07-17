@@ -970,6 +970,66 @@ function hideCelebration() {
    LOGOUT
 ===================================================== */
 
+async function resetRehearsal() {
+  if (!isTestMode) {
+    return;
+  }
+
+  const confirmed =
+    window.confirm(
+      "リハーサル抽選を初期状態へ戻します。\n\n参加者データは残し、当選結果だけをリセットします。\n実行しますか？"
+    );
+
+  if (!confirmed) {
+    return;
+  }
+
+  resetRehearsalButton.disabled = true;
+  refreshButton.disabled = true;
+  drawButton.disabled = true;
+
+  setMessage(
+    drawMessage,
+    "リハーサルを初期化しています。"
+  );
+
+  try {
+    const result =
+      await callAdminApi(
+        "reset",
+        {
+          confirmation:
+            "RESET_REHEARSAL"
+        }
+      );
+
+    renderStatus(result);
+
+    setMessage(
+      drawMessage,
+      result.message ||
+      "リハーサルを初期化しました。",
+      "success"
+    );
+  } catch (error) {
+    setMessage(
+      drawMessage,
+      safelyGetErrorMessage(
+        error,
+        "リハーサルを初期化できませんでした。"
+      ),
+      "error"
+    );
+
+    updateDrawButtonState(
+      latestStatus
+    );
+  } finally {
+    resetRehearsalButton.disabled = false;
+    refreshButton.disabled = false;
+  }
+}
+
 function logoutAdmin() {
   stopAutoRefresh();
   resetHoldProgress();
