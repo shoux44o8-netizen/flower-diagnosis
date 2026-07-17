@@ -1106,6 +1106,11 @@ adminPinInput.addEventListener(
 );
 
 
+resetRehearsalButton.addEventListener(
+  "click",
+  resetRehearsal
+);
+
 logoutButton.addEventListener(
   "click",
   logoutAdmin
