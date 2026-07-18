@@ -247,14 +247,19 @@ eventUrl.searchParams.set(
           Prefer: "return=minimal"
         },
         body: JSON.stringify({
-          id: participantId,
-          event_id: activeEvent.id,
-          guest_name: guestName,
-          device_id: deviceId,
-          flower_result: flowerResult,
-          lottery_status: "pending",
-          winner_number: null
-        })
+  id: participantId,
+  event_id: activeEvent.id,
+  guest_name: guestName,
+  device_id: deviceId,
+  flower_result: flowerResult,
+
+  lottery_status:
+    flowerResult === "sandersonia"
+      ? "pending"
+      : "not_selected",
+
+  winner_number: null
+})
       });
 
     if (!participantResponse.ok) {
