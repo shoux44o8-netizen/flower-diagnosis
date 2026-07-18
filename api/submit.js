@@ -305,10 +305,14 @@ eventUrl.searchParams.set(
     }
 
     return createJsonResponse({
-      ok: true,
-      participantId,
-      lotteryStatus: "pending"
-    });
+  ok: true,
+  participantId,
+
+  lotteryStatus:
+    flowerResult === "sandersonia"
+      ? "pending"
+      : "not_selected"
+});
   } catch (error) {
     console.error(
       "Unexpected submit error:",
