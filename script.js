@@ -598,6 +598,8 @@ async function finishQuiz() {
 
 submitStatus.textContent = "";
 
+submitStatus.className =
+  "submit-status";
   /*
     結果画面は先に表示します。
 
@@ -606,13 +608,17 @@ submitStatus.textContent = "";
   */
 
  try {
+
   const submission =
     await submitDiagnosisResult(
       latestResultKey
     );
 
+  submitStatus.className =
+    "submit-status success";
+
   submitStatus.textContent =
-    "✅ 抽選受付が完了しました。";
+    "✓ 抽選受付が完了しました。";
 
   console.log(
     "診断結果を保存しました。",
@@ -626,8 +632,11 @@ submitStatus.textContent = "";
     "ALREADY_ENTERED"
   ) {
 
+    submitStatus.className =
+      "submit-status info";
+
     submitStatus.textContent =
-      "ℹ️ この端末では受付済みです。";
+      "この端末では受付済みです。";
 
     console.info(
       "この端末では登録済みです。"
@@ -638,12 +647,18 @@ submitStatus.textContent = "";
     "LOTTERY_CLOSED"
   ) {
 
+    submitStatus.className =
+      "submit-status error";
+
     submitStatus.textContent =
       "受付時間外のため参加できません。";
 
     console.warn(error);
 
   } else {
+
+    submitStatus.className =
+      "submit-status error";
 
     submitStatus.textContent =
       "通信エラーが発生しました。スタッフへお声がけください。";
