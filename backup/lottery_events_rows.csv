@@ -1,0 +1,3 @@
+id,name,is_open,draw_finished,max_winners,created_at,event_code,starts_at,ends_at,closed_at,drawn_at
+00d5a16c-fd4a-4dec-9621-554c830f6b7d,Shoya & Honoka Wedding 2026,true,false,3,2026-07-15 23:29:43.925057+00,wedding-2026-09-19,2026-09-19 01:00:00+00,2026-09-19 11:00:00+00,,
+1e723ac6-84e8-4a70-80fb-adb07a8c8b96,Shoya Rehearsal,true,false,3,2026-07-14 00:16:59.753595+00,rehearsal-2026,2026-07-15 23:29:43.925057+00,2026-09-19 00:59:59+00,,
