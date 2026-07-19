@@ -591,6 +591,13 @@ async function finishQuiz() {
     "resultScreen"
   );
 
+  const submitStatus =
+  document.getElementById(
+    "submitStatus"
+  );
+
+submitStatus.textContent = "";
+
   /*
     結果画面は先に表示します。
 
@@ -598,32 +605,57 @@ async function finishQuiz() {
     ゲストを待たせないためです。
   */
 
-  try {
-    const submission =
-      await submitDiagnosisResult(
-        latestResultKey
-      );
-
-    console.log(
-      "診断結果を保存しました。",
-      submission.participantId
+ try {
+  const submission =
+    await submitDiagnosisResult(
+      latestResultKey
     );
-  } catch (error) {
-    if (
-      error.code ===
-      "ALREADY_ENTERED"
-    ) {
-      console.info(
-        "この端末では登録済みです。"
-      );
-    } else {
-      console.error(
-        "診断結果の保存に失敗しました。",
-        error
-      );
-    }
+
+  submitStatus.textContent =
+    "✅ 抽選受付が完了しました。";
+
+  console.log(
+    "診断結果を保存しました。",
+    submission.participantId
+  );
+
+} catch (error) {
+
+  if (
+    error.code ===
+    "ALREADY_ENTERED"
+  ) {
+
+    submitStatus.textContent =
+      "ℹ️ この端末では受付済みです。";
+
+    console.info(
+      "この端末では登録済みです。"
+    );
+
+  } else if (
+    error.code ===
+    "LOTTERY_CLOSED"
+  ) {
+
+    submitStatus.textContent =
+      "受付時間外のため参加できません。";
+
+    console.warn(error);
+
+  } else {
+
+    submitStatus.textContent =
+      "通信エラーが発生しました。スタッフへお声がけください。";
+
+    console.error(
+      "診断結果の保存に失敗しました。",
+      error
+    );
+
   }
 
+}
   /*
     黄金画面の動作確認用です。
 
