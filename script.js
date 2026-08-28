@@ -1010,9 +1010,7 @@ document
     });
   });
 
-resetQuizState();
-showScreen("coverScreen");
-
+restoreParticipationOnLoad();
 /* =====================================================
    RESULT IMAGE EXPORT
 ===================================================== */
