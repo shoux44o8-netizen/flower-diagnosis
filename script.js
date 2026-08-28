@@ -365,7 +365,177 @@ function getOrCreateDeviceId() {
 
   return newDeviceId;
 }
+/* =====================================================
+   RESTORE EXISTING PARTICIPANT
+===================================================== */
 
+async function getExistingParticipation() {
+  const deviceId =
+    localStorage.getItem(
+      DEVICE_ID_STORAGE_KEY
+    );
+
+  /*
+    一度も診断していない端末なら
+    サーバー確認を行わない
+  */
+  if (!deviceId) {
+    return null;
+  }
+
+  const response =
+    await fetch(
+      `/api/submit?deviceId=${encodeURIComponent(
+        deviceId
+      )}`,
+      {
+        method: "GET",
+        cache: "no-store"
+      }
+    );
+
+  if (!response.ok) {
+    throw new Error(
+      "参加状態を確認できませんでした。"
+    );
+  }
+
+  const result =
+    await response.json();
+
+  if (
+    !result.ok ||
+    !result.entered
+  ) {
+    return null;
+  }
+
+  return result;
+}
+
+
+function showRestoredResult(
+  participation
+) {
+  const participant =
+    participation.participant;
+
+  const event =
+    participation.event;
+
+  if (
+    !participant ||
+    !flowers[
+      participant.flowerResult
+    ]
+  ) {
+    showScreen(
+      "coverScreen"
+    );
+    return;
+  }
+
+  guestName =
+    participant.guestName ||
+    "ゲスト";
+
+  latestResultKey =
+    participant.flowerResult;
+
+  localStorage.setItem(
+    PARTICIPANT_ID_STORAGE_KEY,
+    participant.participantId
+  );
+
+  /*
+    当選者
+  */
+  if (
+    participant.lotteryStatus ===
+    "winner"
+  ) {
+    showGoldenCelebration();
+    return;
+  }
+
+  /*
+    当選者以外は、
+    まず元の診断結果を復元
+  */
+  displayResult(
+    latestResultKey
+  );
+
+  showScreen(
+    "resultScreen"
+  );
+
+  const submitStatus =
+    document.getElementById(
+      "submitStatus"
+    );
+
+  if (!submitStatus) {
+    return;
+  }
+
+  /*
+    抽選完了後
+  */
+  if (event.drawFinished) {
+    submitStatus.className =
+      "submit-status info";
+
+    submitStatus.textContent =
+      "抽選結果：今回は当選ではありません。";
+
+    return;
+  }
+
+  /*
+    抽選前
+  */
+  submitStatus.className =
+    "submit-status success";
+
+  submitStatus.textContent =
+    "✓ 抽選受付済みです。抽選後にもう一度このQRコードを読み取ってください。";
+}
+
+
+async function restoreParticipationOnLoad() {
+  /*
+    まず通常の表紙を表示
+  */
+  resetQuizState();
+  showScreen(
+    "coverScreen"
+  );
+
+  try {
+    const participation =
+      await getExistingParticipation();
+
+    if (!participation) {
+      return;
+    }
+
+    showRestoredResult(
+      participation
+    );
+
+  } catch (error) {
+    /*
+      状態確認に失敗しても、
+      サイトそのものは使えるように
+      表紙のままにする。
+    */
+    console.error(
+      "参加状態を復元できませんでした。",
+      error
+    );
+  }
+}
 async function submitDiagnosisResult(
   flowerResult
 ) {
