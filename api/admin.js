@@ -23,7 +23,8 @@ function getSupabaseSettings() {
     process.env.SUPABASE_URL;
 
   const supabaseSecretKey =
-    process.env.SUPABASE_SECRET_KEY;
+    process.env.SUPABASE_SECRET_KEY ||
+    process.env.SUPABASE_SERVICE_ROLE_KEY;
 
   if (
     !supabaseUrl ||
@@ -51,7 +52,8 @@ function createSupabaseHeaders(
 
 function verifyAdminPin(pin) {
   const expectedPin =
-    process.env.LOTTERY_ADMIN_PIN;
+    process.env.LOTTERY_ADMIN_PIN ||
+    process.env.ADMIN_SECRET;
 
   return (
     typeof pin === "string" &&
