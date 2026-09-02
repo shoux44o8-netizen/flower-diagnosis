@@ -191,7 +191,7 @@ const questions = [
       {
         label: "静かにそばにいる",
         points: {
-          blessing: 3,
+          blessing: 6,
           love: 1
         }
       }
@@ -285,7 +285,7 @@ const questions = [
       {
         label: "新郎新婦を包む祝福",
         points: {
-          blessing: 3,
+          blessing: 6,
           love: 1
         }
       },
