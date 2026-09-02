@@ -8,12 +8,23 @@
 ### SUPABASE_URL
 取得先：Supabase → Settings → API → Project URL
 
-### SUPABASE_ANON_KEY
+### SUPABASE_PUBLISHABLE_KEY
 取得先：Supabase → Settings → API → Publishable (anon) key
 
-### SUPABASE_SERVICE_ROLE_KEY
+互換名：`SUPABASE_ANON_KEY`でも動作します。
+
+### SUPABASE_SECRET_KEY
 取得先：Supabase → Settings → API → service_role key
 
-### ADMIN_SECRET
+互換名：`SUPABASE_SERVICE_ROLE_KEY`でも動作します。
+
+### LOTTERY_ADMIN_PIN
 用途：管理画面（admin.html）の認証用シークレット
 設定先：Vercel → Project Settings → Environment Variables
+
+互換名：`ADMIN_SECRET`でも動作します。
+
+## Security
+
+- 実際の値はGitHubやこのバックアップへ保存しないでください。
+- `SUPABASE_SECRET_KEY`または`SUPABASE_SERVICE_ROLE_KEY`を、ブラウザ側のHTML・CSS・JavaScriptへ記載しないでください。
